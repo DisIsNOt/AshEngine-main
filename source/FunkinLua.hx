@@ -1106,9 +1106,9 @@ class FunkinLua {
 		});
 
 		// gay ass tweens
-		Lua_helper.add_callback(lua, "doTweenX", function(tag:String, vars:String, value:Dynamic, duration:Float, ease:String) {
+		Lua_helper.add_callback(lua, "doTween", function(viration:String, tag:String, vars:String, value:Dynamic, duration:Float, ease:String) {
 			var penisExam:Dynamic = tweenShit(tag, vars);
-			if(penisExam != null) {
+			if(penisExam != null && viration == 'x') { //da x
 				PlayState.instance.modchartTweens.set(tag, FlxTween.tween(penisExam, {x: value}, duration, {ease: getFlxEaseByString(ease),
 					onComplete: function(twn:FlxTween) {
 						PlayState.instance.callOnLuas('onTweenCompleted', [tag]);
@@ -1116,9 +1116,59 @@ class FunkinLua {
 					}
 				}));
 			} else {
-				luaTrace('doTweenX: Couldnt find object: ' + vars, false, false, FlxColor.RED);
+				luaTrace('doTweenX Couldnt find object: ' + vars, false, false, FlxColor.WHITE);
+				
 			}
+
+			if(penisExam != null && viration == 'y') { //da y
+				PlayState.instance.modchartTweens.set(tag, FlxTween.tween(penisExam, {y: value}, duration, {ease: getFlxEaseByString(ease),
+					onComplete: function(twn:FlxTween) {
+						PlayState.instance.callOnLuas('onTweenCompleted', [tag]);
+						PlayState.instance.modchartTweens.remove(tag);
+					}
+				}));
+			} else {
+				luaTrace('doTweenY Couldnt find object: ' + vars, false, false, FlxColor.WHITE);
+			}
+
+			if(penisExam != null && viration == 'alpha') {  //tween alpha
+				PlayState.instance.modchartTweens.set(tag, FlxTween.tween(penisExam, {alpha: value}, duration, {ease: getFlxEaseByString(ease),
+					onComplete: function(twn:FlxTween) {
+						PlayState.instance.callOnLuas('onTweenCompleted', [tag]);
+						PlayState.instance.modchartTweens.remove(tag);
+					}
+				}));
+			} else {
+				luaTrace('doTweenAlpha Couldnt find object: ' + vars, false, false, FlxColor.WHITE);
+					
+			}
+
+			if (penisExam != null && viration == 'angle') { //tween angle
+				PlayState.instance.modchartTweens.set(tag, FlxTween.tween(penisExam, {angle: value}, duration, {ease: getFlxEaseByString(ease),
+					onComplete: function(twn:FlxTween) {
+						PlayState.instance.callOnLuas('onTweenCompleted', [tag]);
+						PlayState.instance.modchartTweens.remove(tag);
+					}
+				}));
+			} else {
+				luaTrace('doTweenAngle Couldnt find object: ' + vars, false, false ,FlxColor.WHITE);
+			}
+
+			if (penisExam != null && viration == 'zoom') { //tween zoom
+				PlayState.instance.modchartTweens.set(tag, FlxTween.tween(penisExam, {zoom: value}, duration, {ease: getFlxEaseByString(ease),
+					onComplete: function(twn:FlxTween) {
+						PlayState.instance.callOnLuas('onTweenCompleted', [tag]);
+						PlayState.instance.modchartTweens.remove(tag);
+					}
+				}));
+
+			} else {
+				luaTrace('doTweenZoom Couldnt find object: ' + vars, false, false ,FlxColor.WHITE);
+			}
+
 		});
+
+		/*
 		Lua_helper.add_callback(lua, "doTweenY", function(tag:String, vars:String, value:Dynamic, duration:Float, ease:String) {
 			var penisExam:Dynamic = tweenShit(tag, vars);
 			if(penisExam != null) {
@@ -1132,6 +1182,7 @@ class FunkinLua {
 				luaTrace('doTweenY: Couldnt find object: ' + vars, false, false, FlxColor.RED);
 			}
 		});
+		
 		Lua_helper.add_callback(lua, "doTweenAngle", function(tag:String, vars:String, value:Dynamic, duration:Float, ease:String) {
 			var penisExam:Dynamic = tweenShit(tag, vars);
 			if(penisExam != null) {
@@ -1158,6 +1209,8 @@ class FunkinLua {
 				luaTrace('doTweenAlpha: Couldnt find object: ' + vars, false, false, FlxColor.RED);
 			}
 		});
+		*/
+		/*
 		Lua_helper.add_callback(lua, "doTweenZoom", function(tag:String, vars:String, value:Dynamic, duration:Float, ease:String) {
 			var penisExam:Dynamic = tweenShit(tag, vars);
 			if(penisExam != null) {
@@ -1171,6 +1224,7 @@ class FunkinLua {
 				luaTrace('doTweenZoom: Couldnt find object: ' + vars, false, false, FlxColor.RED);
 			}
 		});
+		*/
 		Lua_helper.add_callback(lua, "doTweenColor", function(tag:String, vars:String, targetColor:String, duration:Float, ease:String) {
 			var penisExam:Dynamic = tweenShit(tag, vars);
 			if(penisExam != null) {
@@ -2505,8 +2559,7 @@ class FunkinLua {
 			if(!PlayState.instance.modchartSaves.exists(name))
 			{
 				var save:FlxSave = new FlxSave();
-				// folder goes unused for flixel 5 users. @BeastlyGhost
-				save.bind(name #if (flixel < "5.0.0"), folder #end);
+				save.bind(name, folder);
 				PlayState.instance.modchartSaves.set(name, save);
 				return;
 			}
@@ -2770,7 +2823,7 @@ class FunkinLua {
 			return list;
 		});
 
-		call('onCreate', []);
+		call('create', []);
 		#end
 	}
 
