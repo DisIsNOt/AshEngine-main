@@ -1,11 +1,11 @@
 # Friday Night Funkin' - AshEngine
 
+Useless
+
 ## Orignal By
 * Shadow Mario - Programmer
 * RiverOaken - Artist
 * Yoshubs - Assistant Programmer
-
-### Special Thanks
 * bbpanzu - Ex-Programmer
 * shubs - New Input System
 * SqirraRNG - Crash Handler and Base code for Chart Editor's Waveform
